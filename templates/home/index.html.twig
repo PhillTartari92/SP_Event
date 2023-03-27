@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<h1 class='text-center'>NOS PHOTOS HOMEPAGE</h1>
+<div class="container">
+<div class="row mb-5">
+    <div class="col-4 mt-5"><img src="assets/images/rafting.jpg" alt="" style='height: 300px; width: 500px'></div>
+    <div class="col-8"><img src="assets/images/rafting.jpg" alt="" style='height: 400px; width: 800px'></div>
+  </div>
+
+  <div class="filtre-dropdown d-flex">
+  <h3 class='mx-2'>Evénements populaires: </h3>
+  <div class="dropdown">
+  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Categories
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">MARSEILLE</a></li>
+    <li><a class="dropdown-item" href="#">CANCUN</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+
+  </div>
+  <div class="row mt-4">
+    <div class="col "><img src="assets/images/rafting.jpg" alt="" style='height: 300px'></div>
+    <div class="col"><img src="assets/images/rafting.jpg" alt="" style='height: 300px'></div>
+    <div class="col"><img src="assets/images/rafting.jpg" alt="" style='height: 300px'></div>
+    <div class="col"><img src="assets/images/rafting.jpg" alt="" style='height: 300px'></div>
+  </div>
+</div>
+{% endblock %}
