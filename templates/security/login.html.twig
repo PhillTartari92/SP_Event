@@ -14,11 +14,11 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal text-center">Veuillez vous connecter</h1>
     <div class="container-login m-auto" style="width:40vw" >
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
+    <label for="inputPassword">Mot de pase</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
@@ -36,9 +36,13 @@
             </label>
         </div>
     #}
-
-    <button class="btn btn-lg btn-primary mt-5" type="submit">
-        Sign in
+    <div class='btn-login d-flex m-auto mt-5 text-center w-25'>
+    <button class="btn btn-primary w-50" type="submit">
+        Se connecter
     </button>
+    <button class="btn btn-primary ms-2 w-50" type="submit">
+        S'inscrire
+    </button>
+    </div>
 </form>
 {% endblock %}
