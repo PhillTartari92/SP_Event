@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AjoutEvenement index{% endblock %}
+
+{% block body %}
+    <h1>AjoutEvenement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Ville</th>
+                <th>Date</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ajout_evenement in ajout_evenements %}
+            <tr>
+                <td>{{ ajout_evenement.id }}</td>
+                <td>{{ ajout_evenement.titre }}</td>
+                <td>{{ ajout_evenement.image }}</td>
+                <td>{{ ajout_evenement.description }}</td>
+                <td>{{ ajout_evenement.prix }}</td>
+                <td>{{ ajout_evenement.ville }}</td>
+                <td>{{ ajout_evenement.date }}</td>
+                <td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_ajout_evenement_show', {'id': ajout_evenement.id}) }}">show</a>
+                    <a href="{{ path('app_ajout_evenement_edit', {'id': ajout_evenement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ajout_evenement_new') }}">Create new</a>
+{% endblock %}
