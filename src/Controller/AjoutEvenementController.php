@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/ajout/evenement')]
 class AjoutEvenementController extends AbstractController
 {
-    #[Route('/', name: 'app_ajout_evenement_index', methods: ['GET'])]
+    #[Route('/ajout', name: 'app_ajout_evenement_index', methods: ['GET'])]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
         return $this->render('ajout_evenement/index.html.twig', [
