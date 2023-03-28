@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AjoutEvenement{% endblock %}
+
+{% block body %}
+    <h1>AjoutEvenement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ajout_evenement.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ ajout_evenement.titre }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ ajout_evenement.image }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ajout_evenement.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ ajout_evenement.prix }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ ajout_evenement.ville }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ ajout_evenement.date }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ajout_evenement_index') }}">back to list</a>
+
+    <a href="{{ path('app_ajout_evenement_edit', {'id': ajout_evenement.id}) }}">edit</a>
+
+    {{ include('ajout_evenement/_delete_form.html.twig') }}
+{% endblock %}
