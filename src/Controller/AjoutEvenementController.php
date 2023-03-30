@@ -10,14 +10,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/ajout/evenement')]
+#[Route('/evenement')]
 class AjoutEvenementController extends AbstractController
 {
     #[Route('/ajout', name: 'app_ajout_evenement_index', methods: ['GET'])]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
+        // Récupérer l'utilisateur courant
+        $userId = $this->getUser()->getId();
+
+        // Utiliser l'id pour récupérer les événements de l'utilisateur
+        $ajout_evenements = $ajoutEvenementRepository->findBy(['id' => $userId]);
+        $userEvent = $ajoutEvenementRepository->findByUserId($userId);
+        //dd($userEvent);
+
+       // $ev= $ajoutEvenementRepository->findAll();
+
+      //  dd($ev);
         return $this->render('ajout_evenement/index.html.twig', [
-            'ajout_evenements' => $ajoutEvenementRepository->findAll(),
+            'ajout_evenements' => $ajout_evenements,
+            'userEvent'=> $userEvent,
         ]);
     }
 
@@ -29,6 +41,10 @@ class AjoutEvenementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ajoutEvenement->setCreatedAt(new \DateTime());
+            $ajoutEvenement->setUserId($this->getUser());
+
+
             $ajoutEvenementRepository->save($ajoutEvenement, true);
 
             return $this->redirectToRoute('app_ajout_evenement_index', [], Response::HTTP_SEE_OTHER);

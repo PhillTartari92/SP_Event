@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -53,6 +55,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: AjoutEvenement::class)]
+    private Collection $ajoutEvenements;
+
+    public function __construct()
+    {
+        $this->ajoutEvenements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -216,6 +226,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AjoutEvenement>
+     */
+    public function getAjoutEvenements(): Collection
+    {
+        return $this->ajoutEvenements;
+    }
+
+    public function addAjoutEvenement(AjoutEvenement $ajoutEvenement): self
+    {
+        if (!$this->ajoutEvenements->contains($ajoutEvenement)) {
+            $this->ajoutEvenements->add($ajoutEvenement);
+            $ajoutEvenement->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAjoutEvenement(AjoutEvenement $ajoutEvenement): self
+    {
+        if ($this->ajoutEvenements->removeElement($ajoutEvenement)) {
+            // set the owning side to null (unless already changed)
+            if ($ajoutEvenement->getUserId() === $this) {
+                $ajoutEvenement->setUserId(null);
+            }
+        }
 
         return $this;
     }
