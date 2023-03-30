@@ -17,7 +17,8 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ ajout_evenement.image }}</td>
+                <td><img src="{{ asset('assets/images ' ~ ajout_evenement.image) }}" alt="{{ ajout_evenement.titre }}" /></td>
+                {# <td>{{ ajout_evenement.image }}</td> #}
             </tr>
             <tr>
                 <th>Description</th>
