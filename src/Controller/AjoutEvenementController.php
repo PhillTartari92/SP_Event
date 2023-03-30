@@ -15,7 +15,7 @@ class AjoutEvenementController extends AbstractController
 {
     #[Route('/ajout', name: 'app_ajout_evenement_index', methods: ['GET'])]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
-    {
+    {     
         return $this->render('ajout_evenement/index.html.twig', [
             'ajout_evenements' => $ajoutEvenementRepository->findAll(),
         ]);
