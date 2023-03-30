@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\AjoutEvenement;
 use App\Form\AjoutEvenementType;
 use App\Repository\AjoutEvenementRepository;
+use App\services\UploadFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,35 +17,33 @@ class AjoutEvenementController extends AbstractController
     #[Route('/ajout', name: 'app_ajout_evenement_index', methods: ['GET'])]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
-        // Récupérer l'utilisateur courant
+
         $userId = $this->getUser()->getId();
+// dd($userId);
+        // $ajout_evenemets = $ajoutEvenementRepository->findBy(['user_id' => $userId]);
 
-        // Utiliser l'id pour récupérer les événements de l'utilisateur
-        $ajout_evenements = $ajoutEvenementRepository->findBy(['id' => $userId]);
         $userEvent = $ajoutEvenementRepository->findByUserId($userId);
-        //dd($userEvent);
 
-       // $ev= $ajoutEvenementRepository->findAll();
-
-      //  dd($ev);
         return $this->render('ajout_evenement/index.html.twig', [
             'ajout_evenements' => $userEvent,
-            // 'userEvent'=> $userEvent,
+           
         ]);
     }
 
     #[Route('/new', name: 'app_ajout_evenement_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, AjoutEvenementRepository $ajoutEvenementRepository): Response
+    public function new(Request $request, AjoutEvenementRepository $ajoutEvenementRepository, UploadFile $uploadFile): Response
     {
         $ajoutEvenement = new AjoutEvenement();
         $form = $this->createForm(AjoutEvenementType::class, $ajoutEvenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $ajoutEvenement->setCreatedAt(new \DateTime());
             $ajoutEvenement->setUserId($this->getUser());
-
-
+            $ajoutEvenement->setCreatedAT(new \DateTime());
+          
+            $image = $form->get('image')->getData();
+            $ajoutEvenement->setImage($uploadFile->moveFile($image));      
+          
             $ajoutEvenementRepository->save($ajoutEvenement, true);
 
             return $this->redirectToRoute('app_ajout_evenement_index', [], Response::HTTP_SEE_OTHER);
@@ -64,13 +63,18 @@ class AjoutEvenementController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/{id}/edit', name: 'app_ajout_evenement_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, AjoutEvenement $ajoutEvenement, AjoutEvenementRepository $ajoutEvenementRepository): Response
+    #[Route('/{id}/edit', name: 'app_ajout_evenement_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, AjoutEvenement $ajoutEvenement, AjoutEvenementRepository $ajoutEvenementRepository, UploadFile $uploadFile): Response
     {
         $form = $this->createForm(AjoutEvenementType::class, $ajoutEvenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $image = $form->get('image')->getData();
+            $ajoutEvenement->setImage($uploadFile->moveFile($image));   
+
             $ajoutEvenementRepository->save($ajoutEvenement, true);
 
             return $this->redirectToRoute('app_ajout_evenement_index', [], Response::HTTP_SEE_OTHER);

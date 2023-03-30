@@ -24,14 +24,13 @@
             <tr>
                 <td>{{ ajout_evenement.id }}</td>
                 <td>{{ ajout_evenement.titre }}</td>
-                <td>{{ ajout_evenement.image }}</td>
+              <td><img src="{{ asset(ajout_evenement.image) }}" width="100"></td>
                 <td>{{ ajout_evenement.description }}</td>
                 <td>{{ ajout_evenement.prix }}</td>
                 <td>{{ ajout_evenement.ville }}</td>
                 <td>{{ ajout_evenement.date }}</td>
                 <td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                {# {% if app.user.%} #}
                     <a href="{{ path('app_ajout_evenement_show', {'id': ajout_evenement.id}) }}">show</a>
                     <a href="{{ path('app_ajout_evenement_edit', {'id': ajout_evenement.id}) }}">edit</a>
                 </td>
