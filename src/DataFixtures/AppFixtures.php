@@ -17,12 +17,9 @@ class AppFixtures extends Fixture
         $adminUser->setPassword(password_hash('123456' , PASSWORD_DEFAULT));
         $adminUser->setNom('Boss');
         $adminUser->setPrenom('Patron');
-        $adminUser->setVille('Rio');
-        $adminUser->setCodepostal('99150');
+        $adminUser->setville('Rio');
+        $adminUser->setCodepostal('99');
         $adminUser->setTelephone('0712345678');
-        $adminUser->setAdresse('Rue duCul');
-        $adminUser->setCreatedAt(new \DateTime());
-        
 
 
         $adminUser->setRoles(['ROLE_ADMIN']);
