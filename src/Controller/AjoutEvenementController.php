@@ -26,6 +26,7 @@ class AjoutEvenementController extends AbstractController
         
         return $this->render('ajout_evenement/index.html.twig', [
             'ajout_evenements' => $ajout_evenemets,
+            'userEvent'=> $userEvent,
         ]);
     }
 
