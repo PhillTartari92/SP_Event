@@ -35,6 +35,10 @@ class AjoutEvenement
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'ajoutEvenements')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $userId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +124,18 @@ class AjoutEvenement
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(?User $userId): self
+    {
+        $this->userId = $userId;
 
         return $this;
     }

@@ -31,7 +31,6 @@
                 <td>{{ ajout_evenement.date }}</td>
                 <td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                {# {% if app.user.%} #}
                     <a href="{{ path('app_ajout_evenement_show', {'id': ajout_evenement.id}) }}">show</a>
                     <a href="{{ path('app_ajout_evenement_edit', {'id': ajout_evenement.id}) }}">edit</a>
                 </td>

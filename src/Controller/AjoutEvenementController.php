@@ -10,14 +10,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/ajout/evenement')]
+#[Route('/evenement')]
 class AjoutEvenementController extends AbstractController
 {
     #[Route('/ajout', name: 'app_ajout_evenement_index', methods: ['GET'])]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
-    {     
+    {
+
+        $userId = $this->getUser()->getId();
+
+        $ajout_evenemets = $ajoutEvenementRepository->findBy(['id' => $userId]);
+
+        $userEvent = $ajoutEvenementRepository->findByUserId($userId);
+
+        
         return $this->render('ajout_evenement/index.html.twig', [
-            'ajout_evenements' => $ajoutEvenementRepository->findAll(),
+            'ajout_evenements' => $ajout_evenemets,
         ]);
     }
 
