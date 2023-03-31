@@ -19,15 +19,14 @@ class AjoutEvenementController extends AbstractController
     {
 
         $userId = $this->getUser()->getId();
-//dd($userId);
-        // $ajout_evenemets = $ajoutEvenementRepository->findBy(['user_id' => $userId]);
-
         $userEvent = $ajoutEvenementRepository->findByUserId($userId);
 
+        $events = $ajoutEvenementRepository->findAll();
         
         return $this->render('ajout_evenement/index.html.twig', [
-            'ajout_evenements' => $userEvent,
-           
+            'ajout_evenements' => $userEvent, 
+            'events' => $events,
+            // dd($events)
         ]);
     }
 

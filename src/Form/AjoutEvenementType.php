@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -35,11 +36,59 @@ class AjoutEvenementType extends AbstractType
                 ],
                 
             ])
-            ->add('description')
-            ->add('prix')
-            ->add('ville')
-            ->add('date')
-            ->add('createdAt')
+            ->add('description', TextType::class, [
+                'label'=> false,
+                'constraints' =>[
+                    new NotBlank([
+                        'message' => 'Ce champ ne peut pas être vide'
+                    ])
+                ],
+                'attr'=>[
+                   'class' => 'form-control mb-3',
+                   'placeholder' => 'Description',
+                ],
+            ])
+            ->add('prix', TextType::class, [
+                'label'=> false,
+                'constraints' =>[
+                    new NotBlank([
+                        'message' => 'Ce champ ne peut pas être vide'
+                    ])
+                ],
+                'attr'=>[
+                   'class' => 'form-control mb-3',
+                   'placeholder' => 'Prix',
+                ],
+            ])
+            ->add('ville', TextType::class, [
+                'label'=> false,
+                'constraints' =>[
+                    new NotBlank([
+                        'message' => 'Ce champ ne peut pas être vide'
+                    ])
+                ],
+                'attr'=>[
+                   'class' => 'form-control mb-3',
+                   'placeholder' => 'Ville',
+                ],
+            ])
+            ->add('date', TextType::class, [
+                'label'=> false,
+                'constraints' =>[
+                    new NotBlank([
+                        'message' => 'Ce champ ne peut pas être vide'
+                    ])
+                ],
+                'attr'=>[
+                   'class' => 'form-control mb-3',
+                   'placeholder' => 'Date',
+                ],
+            ])
+            ->add('createdAt', DateType::class, [
+                'label'=> false,
+                'format' => 'dd MM yyyy',
+              
+            ])
         ;
     }
 
