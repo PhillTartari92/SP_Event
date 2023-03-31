@@ -3,6 +3,7 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+
 <h1 class='text-center'>LES PHOTOS HOMEPAGE</h1>
 <div class="container mt-5">
 <div class="row mb-5">
@@ -25,10 +26,14 @@
 
   </div>
   <div class="row mt-4">
-    <div class="col-3"><img src="assets/images/mariage_beach.jpg" alt="" style='height: 30vh; width:20vw'></div>
+  <div class='col-3 d-flex'>
+  {% for event in events %}
+    <img src="{{asset(event.image)}}" alt="" style='height: 30vh; width:20vw'>
+  {% endfor %}
+    {# <div class="col-3"><img src="assets/images/mariage_beach.jpg" alt="" style='height: 30vh; width:20vw'></div>
     <div class="col-3"><img src="assets/images/brunch.jpg" alt="" style='height: 30vh; width:20vw'></div>
     <div class="col-3"><img src="assets/images/business_conf2.jpg" alt="" style='height: 30vh; width:20vw'></div>
-    <div class="col-3"><img src="assets/images/concert.jpg" alt="" style='height: 30vh; width:20vw'></div>
+    <div class="col-3"><img src="assets/images/concert.jpg" alt="" style='height: 30vh; width:20vw'></div> #}
   </div>
 </div>
 {% endblock %}

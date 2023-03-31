@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\AjoutEvenement;
 use App\Form\AjoutEvenementType;
 use App\Repository\AjoutEvenementRepository;
-use App\services\UploadFile;
+use App\Services\UploadFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
