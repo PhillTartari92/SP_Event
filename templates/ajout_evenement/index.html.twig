@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AjoutEvenement index
+{% block title %}
 {% endblock %}
 
 {% block body %}
-	<h1>AjoutEvenement index</h1>
+	<h1 class="text-center mb-5">Évenements</h1>
 
-	<table class="table">
+	<table class="table m-auto w-75">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -20,9 +20,9 @@
 				<th>actions</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody >
 
-        {############## ROLE ADMIN ###############}
+			{############## ROLE ADMIN ###############}
 
 			{% if is_granted('ROLE_ADMIN') %}
 
@@ -36,46 +36,47 @@
 					<td>{{ event.date }}</td>
 					<td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 					<td>
-								<a href="{{ path('app_ajout_evenement_show', {'id': event.id}) }}">show</a>
-								<a href="{{ path('app_ajout_evenement_edit', {'id': event.id}) }}">edit</a>
-							</td>
-						</tr>
-                        {% else %}
-                            
-						<tr>
-							<td colspan="9">no records found</td>
-						</tr>
-					{% endfor %}
-            {###################################}
-				{% else %}
+						<a href="{{ path('app_ajout_evenement_show', {'id': event.id}) }}" class='btn btn-outline-warning'>Détails</a>
+						<a href="{{ path('app_ajout_evenement_edit', {'id': event.id}) }}" class='btn btn-outline-danger'>Modifier</a>
+					</td>
+				</tr>
+			{% else %}
 
-					{% for ajout_evenement in ajout_evenements %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+			{###################################}
+		{% else %}
 
-						<tr>
-							<td>{{ ajout_evenement.id }}</td>
-							<td>{{ ajout_evenement.titre }}</td>
-							<td><img src="{{ asset(ajout_evenement.image) }}" width="100"></td>
-							<td>{{ ajout_evenement.description }}</td>
-							<td>{{ ajout_evenement.prix }}</td>
-							<td>{{ ajout_evenement.ville }}</td>
-							<td>{{ ajout_evenement.date }}</td>
-							<td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+			{% for ajout_evenement in ajout_evenements %}
 
-							<td>
-								<a href="{{ path('app_ajout_evenement_show', {'id': ajout_evenement.id}) }}">show</a>
-								<a href="{{ path('app_ajout_evenement_edit', {'id': ajout_evenement.id}) }}">edit</a>
-							</td>
-						</tr>
-                        {% else %}
-                            
-						<tr>
-							<td colspan="9">no records found</td>
-						</tr>
-					{% endfor %}
-				{% endif %}
-			</tbody>
-		</tbody>
-	</table>
+				<tr>
+					<td>{{ ajout_evenement.id }}</td>
+					<td>{{ ajout_evenement.titre }}</td>
+					<td><img src="{{ asset(ajout_evenement.image) }}" width="100"></td>
+					<td>{{ ajout_evenement.description }}</td>
+					<td>{{ ajout_evenement.prix }}</td>
+					<td>{{ ajout_evenement.ville }}</td>
+					<td>{{ ajout_evenement.date }}</td>
+					<td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 
-	<a href="{{ path('app_ajout_evenement_new') }}">Create new</a>
-{% endblock %}
+					<td>
+						<a href="{{ path('app_ajout_evenement_show', {'id': ajout_evenement.id}) }}" class="btn btn-outline-warning">Détails</a>
+						<a href="{{ path('app_ajout_evenement_edit', {'id': ajout_evenement.id}) }}" class="btn btn-outline-danger">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		{% endif %}
+
+	</tbody>
+</table>
+
+<div class='create-btn text-center mt-3'>
+	<a href="{{ path('app_ajout_evenement_new') }}" class="btn btn-primary">Create new</a>
+</div>{% endblock %}

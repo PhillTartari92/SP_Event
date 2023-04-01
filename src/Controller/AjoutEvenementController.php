@@ -14,23 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/evenement')]
 class AjoutEvenementController extends AbstractController
 {
+    //********************VOIR TOUS LES EVENEMENTS ******************
     #[Route('/ajout', name: 'app_ajout_evenement_index', methods: ['GET'])]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
 
         $userId = $this->getUser()->getId();
-<<<<<<< HEAD
         $userEvent = $ajoutEvenementRepository->findByUserId($userId);
 
         $events = $ajoutEvenementRepository->findAll();
         
-=======
-// dd($userId);
-        // $ajout_evenemets = $ajoutEvenementRepository->findBy(['user_id' => $userId]);
-
-        $userEvent = $ajoutEvenementRepository->findByUserId($userId);
-
->>>>>>> c385ef10c0d5bd49e0d66c4909b249c168580db1
         return $this->render('ajout_evenement/index.html.twig', [
             'ajout_evenements' => $userEvent, 
             'events' => $events,
@@ -38,6 +31,7 @@ class AjoutEvenementController extends AbstractController
         ]);
     }
 
+    //*************************AJOUTER UN NOUVEAU EVENEMENT ***************************
     #[Route('/new', name: 'app_ajout_evenement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AjoutEvenementRepository $ajoutEvenementRepository, UploadFile $uploadFile): Response
     {
@@ -63,6 +57,7 @@ class AjoutEvenementController extends AbstractController
         ]);
     }
 
+    // *************************VOIR LES DETAILS DE L'EVENEMENT******************
     #[Route('/{id}', name: 'app_ajout_evenement_show', methods: ['GET'])]
     public function show(AjoutEvenement $ajoutEvenement): Response
     {
@@ -71,6 +66,7 @@ class AjoutEvenementController extends AbstractController
         ]);
     }
 
+    // ***********************EDITER UN EVENEMENT***********************
     #[Route('/{id}/edit', name: 'app_ajout_evenement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, AjoutEvenement $ajoutEvenement, AjoutEvenementRepository $ajoutEvenementRepository, UploadFile $uploadFile): Response
     {
@@ -94,6 +90,7 @@ class AjoutEvenementController extends AbstractController
         ]);
     }
 
+    //*******************SUPPRIMER UN EVENEMENT************************/
     #[Route('/{id}', name: 'app_ajout_evenement_delete', methods: ['POST'])]
     public function delete(Request $request, AjoutEvenement $ajoutEvenement, AjoutEvenementRepository $ajoutEvenementRepository): Response
     {

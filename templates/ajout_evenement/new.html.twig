@@ -8,9 +8,9 @@
 
 	<div class='row text-center w-50 m-auto'>
 		<div class="col-m4 ">
-			{{ include('ajout_evenement/_form.html.twig') }}
+			{{ include('ajout_evenement/_form.html.twig',{'button_label': 'Valider'}) }}
 		</div>
-        <a class='btn btn-warning w-25 m-auto' href="{{ path('app_ajout_evenement_index') }}">back to list</a>
+        <a class='btn btn-primary w-25 m-auto' href="{{ path('app_ajout_evenement_index') }}">Retour</a>
 	</div>
 
 
