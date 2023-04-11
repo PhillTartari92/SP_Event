@@ -1,34 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}S&PEvents{% endblock %}
 
 {% block body %}
-<h1 class='text-center'>LES PHOTOS HOMEPAGE</h1>
 <div class="container mt-5">
-<div class="row mb-5">
-    <div class="col-4 mt-5"><img src="assets/images/anniversaire.jpg" alt="" style='height: 42vh; width: 50vw'></div>
-    <div class="col-8"><img src="assets/images/business_pitch2.jpg" alt="" style='height:55vh; width: 56vw'></div>
+<div class="row mb-5 ">
+    <div class="col-5 mt-5"><img src="assets/images/festival.jpg" alt="" style='height: 42vh; width: 50vw'></div>
+    <div class="col-7"><img src="assets/images/rock.jpg" alt="" style='height:55vh; width: 50vw'></div>
   </div>
 
   <div class="filtre-dropdown d-flex ">
   <h3 class='mx-2'>Evénements populaires: </h3>
   <div class="dropdown">
   <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Categories
+    Villes
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">MARSEILLE</a></li>
-    <li><a class="dropdown-item" href="#">CANCUN</a></li>
-    <li><a class="dropdown-item" href="#">PARIS</a></li>
+    <li><a class="dropdown-item" href="{{path('app_filtre',{'id' : 'Marseille'})}}" >Marseille</a></li>
+    <li><a class="dropdown-item" href="{{path('app_filtre',{'id' : 'Bordeaux'})}}" >Bordeaux</a></li>
+    <li><a class="dropdown-item" href="{{path('app_filtre',{'id' : 'Paris'})}}" >Paris</a></li>
   </ul>
 </div>
 
   </div>
   <div class="row mt-4">
-    <div class="col-3"><img src="assets/images/mariage_beach.jpg" alt="" style='height: 30vh; width:20vw'></div>
+  {% for event in events %}
+<div class="col-md-3 mt-3" >
+        <div class="card" >
+          <img src="{{ asset(event.image) }}" class="card-img-top" alt="{{ event.titre }}" style='height:20vh'>
+          <div class="card-body">
+            <h4 class="card-title">{{event.titre }}</h4>
+            <h5 class='card-date'>{{event.ville}}</h5>
+            <h6 class='card-date'>{{event.date}}</h6>
+            <p class="card-text">{{event.prix }}€</p>
+            <div class='card-button text-center'>
+            <a href="{{path('app_fiche_evenement',{'id':event.id})}}" class="btn btn-primary">Réserver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+    {# <div class="col-3"><img src="assets/images/mariage_beach.jpg" alt="" style='height: 30vh; width:20vw'></div>
     <div class="col-3"><img src="assets/images/brunch.jpg" alt="" style='height: 30vh; width:20vw'></div>
     <div class="col-3"><img src="assets/images/business_conf2.jpg" alt="" style='height: 30vh; width:20vw'></div>
-    <div class="col-3"><img src="assets/images/concert.jpg" alt="" style='height: 30vh; width:20vw'></div>
-  </div>
+    <div class="col-3"><img src="assets/images/concert.jpg" alt="" style='height: 30vh; width:20vw'></div> #}
+  
+   {% endfor %}
 </div>
 {% endblock %}

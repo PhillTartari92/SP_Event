@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Évenement{% endblock %}
+
+{% block body %}
+
+<div class="row-8 m-5 text-center">
+
+			<div class="col-md-7 m-auto modal-xl">
+				<div class="card">
+					<img src="{{asset(events.image)}}" class="card-img-top" alt={{events.titre}}>
+					<div class="card-body">
+						<h5 class="card-title">{{events.titre}}</h5>
+						<p class="card-text">{{events.description }}</p>
+						<p><b> {{events.prix}}€</b></p>
+
+                        {% if app.user %}
+						<a href="{{path('app_home')}}" class="btn btn-primary w-25">Réserver</a>
+                        {% else %}
+						<a href="{{path('app_login')}}" class="btn btn-primary w-25">Réserver</a>
+                        {% endif %}
+
+					</div>
+				</div>
+			</div>
+			
+	</div>
+{% endblock %}

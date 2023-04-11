@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\AjoutEvenement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -65,6 +66,10 @@ class AjoutEvenementType extends AbstractType
                 'constraints' =>[
                     new NotBlank([
                         'message' => 'Ce champ ne peut pas être vide'
+                    ]),
+                    new Regex([
+                        'pattern' => "/^[A-Z][a-z]*$/",
+                        "message" => "La Ville doit commencer par une lettre majuscule, suivie de lettres minuscules"
                     ])
                 ],
                 'attr'=>[
@@ -87,6 +92,7 @@ class AjoutEvenementType extends AbstractType
             ->add('createdAt', DateType::class, [
                 'label'=> false,
                 'format' => 'dd MM yyyy',
+                'data' => new \DateTime()
               
             ])
         ;

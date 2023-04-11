@@ -2,20 +2,22 @@
 
 namespace App\Controller;
 
+
+
 use App\Repository\AjoutEvenementRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HomeController extends AbstractController
+class FiltreController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/filtre/{id}', name: 'app_filtre')]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
         $events = $ajoutEvenementRepository->findAll();
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'events' => $events
+
+        return $this->render('filtre/index.html.twig', [
+            'events' => $events,
         ]);
     }
 }
