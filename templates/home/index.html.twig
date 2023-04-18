@@ -29,9 +29,8 @@
         <div class="card" >
           <img src="{{ asset(event.image) }}" class="card-img-top" alt="{{ event.titre }}" style='height:20vh'>
           <div class="card-body">
-            <h4 class="card-title">{{event.titre }}</h4>
-            <h5 class='card-date'>{{event.ville}}</h5>
-            <h6 class='card-date'>{{event.date}}</h6>
+            <h4 class="card-title" style="color:darkblue">{{event.titre }}</h4>
+            <h6 class='card-date' style="color:lightcoral">{{event.ville}}  {{event.date}}</h6>
             <p class="card-text">{{event.prix }}€</p>
             <div class='card-button text-center'>
             <a href="{{path('app_fiche_evenement',{'id':event.id})}}" class="btn btn-primary">Réserver</a>

@@ -11,13 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FiltreController extends AbstractController
 {
-    #[Route('/filtre/{id}', name: 'app_filtre')]
-    public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
+    #[Route('/filtre/{id}', name: 'app_filtre', methods:['GET'])]
+    public function index($id,AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
-        $events = $ajoutEvenementRepository->findAll();
+       
+        $events = $ajoutEvenementRepository->findby(['ville' => $id]);
 
         return $this->render('filtre/index.html.twig', [
             'events' => $events,
+           
         ]);
     }
 }

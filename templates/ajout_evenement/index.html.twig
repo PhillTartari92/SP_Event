@@ -56,10 +56,10 @@
 					<td>{{ ajout_evenement.titre }}</td>
 					<td><img src="{{ asset(ajout_evenement.image) }}" width="100"></td>
 					<td>{{ ajout_evenement.description }}</td>
-					<td>{{ ajout_evenement.prix }}</td>
+					<td>{{ ajout_evenement.prix }}€</td>
 					<td>{{ ajout_evenement.ville }}</td>
 					<td>{{ ajout_evenement.date }}</td>
-					<td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ ajout_evenement.createdAt ? ajout_evenement.createdAt|date('Y-m-d') : '' }}</td>
 
 					<td>
 						<a href="{{ path('app_ajout_evenement_show', {'id': ajout_evenement.id}) }}" class="btn btn-outline-warning">Détails</a>
@@ -69,7 +69,7 @@
 			{% else %}
 
 				<tr>
-					<td colspan="9">no records found</td>
+					<td colspan="9">Rien n'a été trouvé</td>
 				</tr>
 			{% endfor %}
 		{% endif %}
@@ -78,5 +78,5 @@
 </table>
 
 <div class='create-btn text-center mt-3'>
-	<a href="{{ path('app_ajout_evenement_new') }}" class="btn btn-primary">Create new</a>
+	<a href="{{ path('app_ajout_evenement_new') }}" class="btn btn-primary">Nouveau Projet</a>
 </div>{% endblock %}

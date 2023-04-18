@@ -16,11 +16,11 @@
 
          {% if app.user %}
         <li class="nav-item">
-          <a class="nav-link" href="{{path('app_ajout_evenement_index')}}">Créez un événement</a>
+          <a class="nav-link" href="{{path('app_ajout_evenement_index')}}">Créer un événement</a>
         </li>
         {% else %}
           <li class="nav-item">
-          <a class="nav-link" href="{{path('app_login')}}">Créez un événement</a>
+          <a class="nav-link" href="{{path('app_login')}}">Créer un événement</a>
         </li>
         {% endif %}
 
@@ -31,7 +31,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Profil</a></li>
-            <li><a class="dropdown-item" href="#">Creer un evenement</a></li>
+            <li><a class="dropdown-item" href="{{path('app_ajout_evenement_index')}}">Gérer mes évenements</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a></li>
           </ul>
