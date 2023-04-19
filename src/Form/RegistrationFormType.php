@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -34,6 +35,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Taper votre nom.',
                     ]),
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z\s]*$/',
+                        'message' => 'Le nom ne doit contenir que des lettres.'
+                    ])
                 ],
             ])
             ->add('prenom', TextType::class, [
@@ -46,6 +51,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Taper votre prenom.',
                     ]),
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z\s]*$/',
+                        'message' => 'Le prénom ne doit contenir que des lettres.'
+                    ])
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -86,6 +95,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Taper votre numero.',
                     ]),
+                    new Regex([
+                        'pattern' => '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/',
+                        'message' => 'Le format du numéro de téléphone est incorrect.'
+                    ])
                 ],
             ])
             ->add('adresse', TextType::class, [
@@ -98,6 +111,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Taper votre adresse.',
                     ]),
+                    new Regex([
+                        'pattern' => '/^[0-9]{1,4}( ?[a-zA-Z]+)+$/',
+                        'message' => 'Veuillez saisir une adresse valide.'
+                    ])
                 ],
             ])
             ->add('ville', TextType::class, [
@@ -110,7 +127,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Taper votre ville.',
                     ]),
-                   
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/',
+                        'message' => 'Veuillez saisir une ville valide.'
+                    ])
                 ],
             ])
             ->add('codePostal', NumberType::class, [
@@ -123,6 +143,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Taper votre code postal.',
                     ]),
+                    new Regex([
+                        'pattern' => '/^[0-9]{5}$/',
+                        'message' => 'Veuillez saisir un code postal valide.'
+                    ])
                 ],
             ])
             // ->add('createdAt', DateType::class, [

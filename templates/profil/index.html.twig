@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+
+  <div class="row mt-4">
+<div class="col-md-3 mt-3  m-auto" >
+        <div class="card" >
+          <div class="card-body">
+            <h4 class="card-title">{{app.user.nom}} {{app.user.prenom}}</h4>
+            <p class="card-text">Mail : {{app.user.email}}</p>
+            <p class="card-text">Telephone : {{app.user.telephone}}</p>
+            <p class="card-text">Adresse : {{app.user.adresse}}</p>
+            <p class="card-text">Ville : {{app.user.ville}}</p>
+            <p class="card-text">Code Postal : {{app.user.codePostal}}</p>
+            <div class='card-button text-center'>
+            <a href="{{path('app_home')}}" class="btn btn-primary">Retour</a>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
