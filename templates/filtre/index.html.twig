@@ -4,23 +4,44 @@
 {% endblock %}
 
 {% block body %}
+<div class="container mt-5">
+<div class="row mb-5 ">
+    <div class="col-5 mt-5"><img src={{asset('assets/images/festival.jpg')}} alt="" style='height: 42vh; width: 50vw'></div>
+    <div class="col-7"><img src={{asset('assets/images/rock.jpg')}} alt="" style='height:55vh; width: 50vw'></div>
+  </div>
+
+  <div class="filtre-dropdown d-flex ">
+  <h3 class='mx-2'>Evénements populaires: </h3>
+  <div class="dropdown">
+  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Villes
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="{{path('app_home')}}" >Tous</a></li>
+    <li><a class="dropdown-item" href="{{path('app_filtre',{'id' : 'Marseille'})}}" >Marseille</a></li>
+    <li><a class="dropdown-item" href="{{path('app_filtre',{'id' : 'Bordeaux'})}}" >Bordeaux</a></li>
+    <li><a class="dropdown-item" href="{{path('app_filtre',{'id' : 'Paris'})}}" >Paris</a></li>
+  </ul>
+</div>
+
+  </div>
 	<div class="row m-4">
-		{% for event in events %}
-		
+		{% for filtre in filtres %}
 				<div class="col-md-3 mt-3">
 					<div class="card">
-						<img src="{{ asset(event.image) }}" class="card-img-top" alt="{{ event.titre }}" style='height:20vh'>
+						<img src="{{ asset(filtre.image) }}" class="card-img-top" alt="{{ filtre.titre }}" style='height:20vh'>
 						<div class="card-body">
-							<h4 class="card-title">{{event.titre }}</h4>
-							<h5 class='card-date'>{{event.ville}}</h5>
-							<h6 class='card-date' style='color: lightcoral'>{{event.date}}</h6>
-							<p class="card-text">{{event.prix}}€</p>
+							<h4 class="card-title">{{filtre.titre }}</h4>
+							<h5 class='card-date'>{{filtre.ville}}</h5>
+							<h6 class='card-date' style='color: lightcoral'>{{filtre.date}}</h6>
+							<p class="card-text">{{filtre.prix}}€</p>
 							<div class='card-button text-center'>
-								<a href="{{path('app_fiche_evenement',{'id':event.id})}}" class="btn btn-primary">Réserver</a>
+								<a href="{{path('app_fiche_evenement',{'id':filtre.id})}}" class="btn btn-primary">Réserver</a>
 							</div>
 						</div>
 					</div>
 				</div>
 		{% endfor %}
+	</div>
 	</div>
 {% endblock %}

@@ -16,7 +16,7 @@ b, h5{
 					<img src={{asset('assets/images/qr.png')}} class="card-img-top w-50 m-auto mt-3" alt="qrCode" style='height:30vh'>
 					<div class="card-body">
 						<h5 class="card-title fs-1">{{app.user.prenom}} {{app.user.nom}}</h5>
-                        <p><b>Réference:</b> {{ app.user.id * num}}{{ app.user.nom}} {{app.user.id * num2}}</p>
+                        <p><b>Réference:</b> {{ app.user.id * num}}{{ app.user.nom}}-{{app.user.id * num2}}</p>
 						<p class="card-text"> </p>
 						<p><b>Un mail de confirmation a été envoyé a l'adresse : </b>{{app.user.email}}</p>
 					</div>

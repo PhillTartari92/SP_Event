@@ -12,10 +12,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
+
         $events = $ajoutEvenementRepository->findAll();
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'events' => $events
         ]);
     }
+
 }

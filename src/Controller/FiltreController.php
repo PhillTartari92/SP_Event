@@ -15,10 +15,10 @@ class FiltreController extends AbstractController
     public function index($id,AjoutEvenementRepository $ajoutEvenementRepository): Response
     {
        
-        $events = $ajoutEvenementRepository->findby(['ville' => $id]);
+        $filtre = $ajoutEvenementRepository->findby(['ville' => $id]);
 
         return $this->render('filtre/index.html.twig', [
-            'events' => $events,
+            'filtres' => $filtre,
            
         ]);
     }

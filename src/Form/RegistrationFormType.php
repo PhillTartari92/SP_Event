@@ -38,7 +38,14 @@ class RegistrationFormType extends AbstractType
                     new Regex([
                         'pattern' => '/^[a-zA-Z\s]*$/',
                         'message' => 'Le nom ne doit contenir que des lettres.'
-                    ])
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Le nom doit contenir au moins {{ limit }} caractères',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 100,
+                        'maxMessage' => 'Le nom ne doit pas dépasser {{ limit }} caractères'
+                    ]),
                 ],
             ])
             ->add('prenom', TextType::class, [
@@ -54,7 +61,14 @@ class RegistrationFormType extends AbstractType
                     new Regex([
                         'pattern' => '/^[a-zA-Z\s]*$/',
                         'message' => 'Le prénom ne doit contenir que des lettres.'
-                    ])
+                    ]),
+                      new Length([
+                        'min' => 2,
+                        'minMessage' => 'Le prénom doit contenir au moins {{ limit }} caractères',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 100,
+                        'maxMessage' => 'Le prénom ne doit pas dépasser {{ limit }} caractères'
+                    ]),
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -162,7 +176,7 @@ class RegistrationFormType extends AbstractType
             //     // ],
             // ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label'=> 'Accépter les conditions',
+                'label'=> 'Accepter les conditions',
                 'mapped' => false,
                 'attr' => [
                     'class' => 'm-2',
