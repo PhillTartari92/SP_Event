@@ -33,8 +33,8 @@
 						<div class="card-body">
 							<h4 class="card-title">{{filtre.titre }}</h4>
 							<h5 class='card-date'>{{filtre.ville}}</h5>
-							<h6 class='card-date' style='color: lightcoral'>{{filtre.date}}</h6>
-							<p class="card-text">{{filtre.prix}}€</p>
+							<p class='card-date text-secondary'>{{filtre.date}}</p>
+							<p class="card-text text-secondary">{{filtre.prix}}€</p>
 							<div class='card-button text-center'>
 								<a href="{{path('app_fiche_evenement',{'id':filtre.id})}}" class="btn btn-primary">Réserver</a>
 							</div>

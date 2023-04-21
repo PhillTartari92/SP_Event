@@ -7,22 +7,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item me-3">
           <a class="nav-link active" aria-current="page" href="{{path('app_home')}}">Home</a>
         </li>
 
          {% if app.user %}
-        <li class="nav-item">
+        <li class="nav-item me-3">
           <a class="nav-link" href="{{path('app_ajout_evenement_index')}}">Créer un événement</a>
         </li>
         {% else %}
-          <li class="nav-item">
+          <li class="nav-item me-3">
           <a class="nav-link" href="{{path('app_login')}}">Créer un événement</a>
         </li>
         {% endif %}
 
         {% if app.user %}
-        <li class="nav-item dropdown">
+        <li class="nav-item me-3 dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{app.user.email}}
           </a>
@@ -36,7 +36,7 @@
         {% endif %}
 
         {% if app.user == false %}
-        <li class="nav-item">
+        <li class="nav-item me-5">
           <a class="nav-link " href="{{path('app_login')}}">Connexion</a>
         </li>
         {% endif %}
