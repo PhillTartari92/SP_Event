@@ -175,18 +175,6 @@ class RegistrationFormType extends AbstractType
 
             //     // ],
             // ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label'=> 'Accepter les conditions',
-                'mapped' => false,
-                'attr' => [
-                    'class' => 'm-2',
-                ],
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accépter les thermes.',
-                    ]),
-                ],
-            ])
             ->add('submit', SubmitType::class, [
                 'label'=> 'Valider',
                 'attr' => [

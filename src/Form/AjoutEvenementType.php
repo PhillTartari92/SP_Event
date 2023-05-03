@@ -89,12 +89,12 @@ class AjoutEvenementType extends AbstractType
                    'placeholder' => 'Date',
                 ],
             ])
-            ->add('createdAt', DateType::class, [
-                'label'=> false,
-                'format' => 'dd MM yyyy',
-                'data' => new \DateTime()
+            // ->add('createdAt', DateType::class, [
+            //     'label'=> false,
+            //     'format' => 'dd MM yyyy',
+            //     'data' => new \DateTime()
               
-            ])
+            // ])
         ;
     }
 
